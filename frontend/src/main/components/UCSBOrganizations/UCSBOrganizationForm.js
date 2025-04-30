@@ -22,7 +22,7 @@ function UCSBOrganizationForm({
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="orgCode">orgCode</Form.Label>
+        <Form.Label htmlFor="orgCode">OrgCode</Form.Label>
         <Form.Control
           data-testid={testIdPrefix + "-orgCode"}
           id="orgCode"
@@ -68,6 +68,20 @@ function UCSBOrganizationForm({
         />
         <Form.Control.Feedback type="invalid">
           {errors.orgTranslation?.message}
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Check
+          data-testid={testIdPrefix + "-inactive"}
+          id="inactive"
+          type="checkbox"
+          label="Inactive"
+          isInvalid={Boolean(errors.orgTranslation)}
+          {...register("inactive")}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.inactive?.message}
         </Form.Control.Feedback>
       </Form.Group>
 
