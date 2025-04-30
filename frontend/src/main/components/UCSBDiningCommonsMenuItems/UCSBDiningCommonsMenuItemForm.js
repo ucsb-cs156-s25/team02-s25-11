@@ -51,7 +51,7 @@ function UCSBDiningCommonsMenuItemForm({
           })}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.name?.message}
+          {errors.diningCommonsCode?.message}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -71,7 +71,7 @@ function UCSBDiningCommonsMenuItemForm({
           })}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.description?.message}
+          {errors.name?.message}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -91,7 +91,7 @@ function UCSBDiningCommonsMenuItemForm({
           })}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.name?.message}
+          {errors.station?.message}
         </Form.Control.Feedback>
       </Form.Group>
 
