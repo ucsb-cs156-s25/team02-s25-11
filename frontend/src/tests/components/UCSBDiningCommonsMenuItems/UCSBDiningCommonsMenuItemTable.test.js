@@ -29,7 +29,10 @@ describe("UCSBDiningCommonsMenuItemTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBDiningCommonsMenuItemTable ucsbDiningCommonsMenuItems={[]} currentUser={currentUser} />
+          <UCSBDiningCommonsMenuItemTable
+            ucsbDiningCommonsMenuItems={[]}
+            currentUser={currentUser}
+          />
         </MemoryRouter>
       </QueryClientProvider>,
     );
@@ -57,7 +60,9 @@ describe("UCSBDiningCommonsMenuItemTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <UCSBDiningCommonsMenuItemTable
-            ucsbDiningCommonsMenuItems={ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems}
+            ucsbDiningCommonsMenuItems={
+              ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems
+            }
             currentUser={currentUser}
           />
         </MemoryRouter>
@@ -82,9 +87,9 @@ describe("UCSBDiningCommonsMenuItemTable tests", () => {
       screen.getByTestId(`${testId}-cell-row-0-col-diningCommonsCode`),
     ).toHaveTextContent("Ortega");
 
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent(
-      "Blueberry crumb pie",
-    );
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-name`),
+    ).toHaveTextContent("Blueberry crumb pie");
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-station`),
     ).toHaveTextContent("Dessert");
@@ -111,7 +116,9 @@ describe("UCSBDiningCommonsMenuItemTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <UCSBDiningCommonsMenuItemTable
-            ucsbDiningCommonsMenuItems={ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems}
+            ucsbDiningCommonsMenuItems={
+              ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems
+            }
             currentUser={currentUser}
           />
         </MemoryRouter>
@@ -156,7 +163,9 @@ describe("UCSBDiningCommonsMenuItemTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <UCSBDiningCommonsMenuItemTable
-            ucsbDiningCommonsMenuItems={ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems}
+            ucsbDiningCommonsMenuItems={
+              ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems
+            }
             currentUser={currentUser}
           />
         </MemoryRouter>
@@ -181,7 +190,9 @@ describe("UCSBDiningCommonsMenuItemTable tests", () => {
 
     // assert - check that the navigate function was called with the expected path
     await waitFor(() =>
-      expect(mockedNavigate).toHaveBeenCalledWith("/ucsbdiningcommonsmenuitems/edit/1"),
+      expect(mockedNavigate).toHaveBeenCalledWith(
+        "/ucsbdiningcommonsmenuitems/edit/1",
+      ),
     );
   });
 
@@ -199,7 +210,9 @@ describe("UCSBDiningCommonsMenuItemTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <UCSBDiningCommonsMenuItemTable
-            ucsbDiningCommonsMenuItems={ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems}
+            ucsbDiningCommonsMenuItems={
+              ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems
+            }
             currentUser={currentUser}
           />
         </MemoryRouter>
