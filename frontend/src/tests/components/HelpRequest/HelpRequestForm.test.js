@@ -27,7 +27,7 @@ describe("HelpRequestForm tests", () => {
         <HelpRequestForm initialContents={helpRequestFixtures.oneRequest} />
       </Router>,
     );
-    await screen.findByTestId(/HelpRequestForm-id/);
+    await screen.findByTestId("HelpRequestForm-id");
     expect(screen.getByText(/Id/)).toBeInTheDocument();
     expect(screen.getByTestId(/HelpRequestForm-id/)).toHaveValue("1");
   });
