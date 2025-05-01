@@ -16,25 +16,25 @@ const Template = (args) => {
 export const Empty = Template.bind({});
 
 Empty.args = {
-  dates: [],
+  helpRequests: [],
 };
 
 export const ThreeItemsOrdinaryUser = Template.bind({});
 
 ThreeItemsOrdinaryUser.args = {
-  helpRequests: helpRequestFixtures.threeDates,
+  helpRequests: helpRequestFixtures.threeHelpRequests,
   currentUser: currentUserFixtures.userOnly,
 };
 
 export const ThreeItemsAdminUser = Template.bind({});
 ThreeItemsAdminUser.args = {
-  helpRequests: helpRequestFixtures.threeDates,
+  helpRequests: helpRequestFixtures.threeHelpRequests,
   currentUser: currentUserFixtures.adminUser,
 };
 
 ThreeItemsAdminUser.parameters = {
   msw: [
-    http.delete("/api/ucsbdates", () => {
+    http.delete("/api/helprequest", () => {
       return HttpResponse.json({}, { status: 200 });
     }),
   ],
