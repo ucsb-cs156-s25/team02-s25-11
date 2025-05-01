@@ -13,7 +13,7 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockedNavigate,
 }));
 
-describe("RestaurantForm tests", () => {
+describe("UCSBOrganizationForm tests", () => {
   const queryClient = new QueryClient();
 
   const expectedHeaders = [
@@ -39,6 +39,8 @@ describe("RestaurantForm tests", () => {
       const header = screen.getByText(headerText);
       expect(header).toBeInTheDocument();
     });
+
+
   });
 
   test("renders correctly when passing in initialContents", async () => {
@@ -46,7 +48,7 @@ describe("RestaurantForm tests", () => {
       <QueryClientProvider client={queryClient}>
         <Router>
           <UCSBOrganizationForm
-            initialContents={ucsbOrganizationFixtures.oneOrganization}
+            initialContents={ucsbOrganizationFixtures.oneOrganization[0]}
           />
         </Router>
       </QueryClientProvider>,
@@ -61,6 +63,19 @@ describe("RestaurantForm tests", () => {
 
     expect(await screen.findByTestId(`${testId}-orgCode`)).toBeInTheDocument();
     expect(screen.getByText("OrgCode")).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-orgCode`)).toHaveValue("ZPR");
+
+    expect(await screen.findByTestId(`${testId}-orgTranslationShort`)).toBeInTheDocument();
+    expect(screen.getByText("OrgTranslationShort")).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-orgTranslationShort`)).toHaveValue("Zeta Phi Rho");
+    
+    expect(await screen.findByTestId(`${testId}-orgTranslation`)).toBeInTheDocument();
+    expect(screen.getByText("OrgTranslation")).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-orgTranslation`)).toHaveValue("Zeta Phi Rho");
+
+    const inactiveDropdown = await screen.findByTestId(`${testId}-inactive`);
+    expect(inactiveDropdown).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-inactive`)).toHaveValue("false");
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
@@ -92,15 +107,28 @@ describe("RestaurantForm tests", () => {
     const submitButton = screen.getByText(/Create/);
     fireEvent.click(submitButton);
 
-    await screen.findByText(/orgTranslationShort is required/);
-    expect(screen.getByText(/orgTranslation is required/)).toBeInTheDocument();
+    await screen.findByText(/OrgCode is required/);
+    await screen.findByText(/OrgTranslationShort is required/);
+    await screen.findByText(/OrgTranslation is required/);
+    await screen.findByText(/Inactive is required/);
+  });
 
-    const nameInput = screen.getByTestId(`${testId}-orgTranslationShort`);
-    fireEvent.change(nameInput, { target: { value: "a".repeat(256) } });
-    fireEvent.click(submitButton);
+  test("dropdown for inactive can be selected", async () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <UCSBOrganizationForm />
+        </Router>
+      </QueryClientProvider>,
+    );
 
-    await waitFor(() => {
-      expect(screen.getByText(/Max length 255 characters/)).toBeInTheDocument();
-    });
+    const inactiveDropdown = screen.getByTestId(`${testId}-inactive`);
+    expect(inactiveDropdown).toBeInTheDocument();
+
+    fireEvent.change(inactiveDropdown, { target: { value: "true" } });
+    expect(inactiveDropdown.value).toBe("true");
+
+    fireEvent.change(inactiveDropdown, { target: { value: "false" } });
+    expect(inactiveDropdown.value).toBe("false");
   });
 });

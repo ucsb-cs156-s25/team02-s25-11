@@ -27,10 +27,14 @@ function UCSBOrganizationForm({
           data-testid={testIdPrefix + "-orgCode"}
           id="orgCode"
           type="text"
-          {...register("orgCode")}
-          defaultValue={initialContents?.orgCode || ""}
-          disabled={!!initialContents}
+          isInvalid={Boolean(errors.orgCode)}
+          {...register("orgCode", {
+            required: "OrgCode is required.",
+          })}
         />
+        <Form.Control.Feedback type="invalid">
+          {errors.orgCode?.message}
+        </Form.Control.Feedback>
       </Form.Group>
 
       <Form.Group className="mb-3">
@@ -43,11 +47,7 @@ function UCSBOrganizationForm({
           type="text"
           isInvalid={Boolean(errors.orgTranslationShort)}
           {...register("orgTranslationShort", {
-            required: "orgTranslationShort is required.",
-            maxLength: {
-              value: 255,
-              message: "Max length 255 characters",
-            },
+            required: "OrgTranslationShort is required.",
           })}
         />
         <Form.Control.Feedback type="invalid">
@@ -63,7 +63,7 @@ function UCSBOrganizationForm({
           type="text"
           isInvalid={Boolean(errors.orgTranslation)}
           {...register("orgTranslation", {
-            required: "orgTranslation is required.",
+            required: "OrgTranslation is required.",
           })}
         />
         <Form.Control.Feedback type="invalid">
@@ -72,20 +72,26 @@ function UCSBOrganizationForm({
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Check
+        <Form.Label htmlFor="inactive">Inactive</Form.Label>
+        <Form.Control
           data-testid={testIdPrefix + "-inactive"}
           id="inactive"
-          type="checkbox"
-          label="Inactive"
-          isInvalid={Boolean(errors.orgTranslation)}
-          {...register("inactive")}
-        />
+          as="select"
+          isInvalid={Boolean(errors.inactive)}
+          {...register("inactive", {
+            required: "Inactive is required.",
+          })}
+        >
+          <option value="">---</option>
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </Form.Control>
         <Form.Control.Feedback type="invalid">
           {errors.inactive?.message}
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Button type="submit" data-testid={testIdPrefix + "-submit"}>
+      <Button type="submit" >
         {buttonLabel}
       </Button>
       <Button
