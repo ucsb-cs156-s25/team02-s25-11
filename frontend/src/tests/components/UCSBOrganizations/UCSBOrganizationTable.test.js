@@ -275,7 +275,6 @@ describe("UCSBOrganizationTable tests", () => {
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-orgCode`),
     ).toHaveTextContent("ZPR");
-    expect;
 
     const deleteButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Delete-button`,
