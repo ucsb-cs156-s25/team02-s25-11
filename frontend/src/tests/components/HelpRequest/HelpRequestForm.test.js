@@ -21,6 +21,31 @@ describe("HelpRequestForm tests", () => {
     await screen.findByText(/Create/);
   });
 
+  test("submits empty default values when no initialContents are passed", async () => {
+    const mockSubmit = jest.fn();
+
+    render(
+      <Router>
+        <HelpRequestForm submitAction={mockSubmit} />
+      </Router>,
+    );
+    await screen.findByTestId("HelpRequestForm-requesterEmail");
+    const submitButton = screen.getByTestId("HelpRequestForm-submit");
+    fireEvent.click(submitButton);
+    await waitFor(() => expect(mockSubmit).toHaveBeenCalled());
+    expect(mockSubmit).toHaveBeenCalledWith(
+      {
+        requesterEmail: "",
+        teamId: "",
+        tableOrBreakoutRoom: "",
+        requestTime: "",
+        explanation: "",
+        solved: false,
+      },
+      expect.anything(),
+    );
+  });
+
   test("renders correctly when no initialContents are passed", async () => {
     render(
       <Router>
