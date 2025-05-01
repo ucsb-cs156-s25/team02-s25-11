@@ -39,8 +39,6 @@ describe("UCSBOrganizationForm tests", () => {
       const header = screen.getByText(headerText);
       expect(header).toBeInTheDocument();
     });
-
-
   });
 
   test("renders correctly when passing in initialContents", async () => {
@@ -65,13 +63,21 @@ describe("UCSBOrganizationForm tests", () => {
     expect(screen.getByText("OrgCode")).toBeInTheDocument();
     expect(screen.getByTestId(`${testId}-orgCode`)).toHaveValue("ZPR");
 
-    expect(await screen.findByTestId(`${testId}-orgTranslationShort`)).toBeInTheDocument();
+    expect(
+      await screen.findByTestId(`${testId}-orgTranslationShort`),
+    ).toBeInTheDocument();
     expect(screen.getByText("OrgTranslationShort")).toBeInTheDocument();
-    expect(screen.getByTestId(`${testId}-orgTranslationShort`)).toHaveValue("Zeta Phi Rho");
-    
-    expect(await screen.findByTestId(`${testId}-orgTranslation`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-orgTranslationShort`)).toHaveValue(
+      "Zeta Phi Rho",
+    );
+
+    expect(
+      await screen.findByTestId(`${testId}-orgTranslation`),
+    ).toBeInTheDocument();
     expect(screen.getByText("OrgTranslation")).toBeInTheDocument();
-    expect(screen.getByTestId(`${testId}-orgTranslation`)).toHaveValue("Zeta Phi Rho");
+    expect(screen.getByTestId(`${testId}-orgTranslation`)).toHaveValue(
+      "Zeta Phi Rho",
+    );
 
     const inactiveDropdown = await screen.findByTestId(`${testId}-inactive`);
     expect(inactiveDropdown).toBeInTheDocument();
