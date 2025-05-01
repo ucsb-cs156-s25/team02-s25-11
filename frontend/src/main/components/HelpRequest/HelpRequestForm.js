@@ -2,7 +2,11 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create" }) {
+function HelpRequestForm({
+  initialContents,
+  submitAction,
+  buttonLabel = "Create",
+}) {
   const {
     register,
     formState: { errors },
@@ -40,8 +44,9 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
               id="requesterEmail"
               type="email"
               isInvalid={Boolean(errors.requesterEmail)}
-              {...register("requesterEmail", { 
-                required: "Requester Email is required." })}
+              {...register("requesterEmail", {
+                required: "Requester Email is required.",
+              })}
             />
             <Form.Control.Feedback type="invalid">
               {errors.requesterEmail?.message}
@@ -57,8 +62,9 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
               id="teamId"
               type="text"
               isInvalid={Boolean(errors.teamId)}
-              {...register("teamId", { 
-                required: "Team ID is required." })}
+              {...register("teamId", {
+                required: "Team ID is required.",
+              })}
             />
             <Form.Control.Feedback type="invalid">
               {errors.teamId?.message}
@@ -70,7 +76,9 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
       <Row>
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="tableOrBreakoutRoom">Table/Breakout Room</Form.Label>
+            <Form.Label htmlFor="tableOrBreakoutRoom">
+              Table/Breakout Room
+            </Form.Label>
             <Form.Control
               data-testid="HelpRequestForm-tableOrBreakoutRoom"
               id="tableOrBreakoutRoom"
@@ -94,8 +102,9 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
               id="requestTime"
               type="datetime-local"
               isInvalid={Boolean(errors.requestTime)}
-              {...register("requestTime", { 
-                required: "Request Time is required." })}
+              {...register("requestTime", {
+                required: "Request Time is required.",
+              })}
             />
             <Form.Control.Feedback type="invalid">
               {errors.requestTime?.message}
@@ -113,8 +122,9 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
               id="explanation"
               type="text"
               isInvalid={Boolean(errors.explanation)}
-              {...register("explanation", { 
-                required: "Explanation is required." })}
+              {...register("explanation", {
+                required: "Explanation is required.",
+              })}
             />
             <Form.Control.Feedback type="invalid">
               {errors.explanation?.message}

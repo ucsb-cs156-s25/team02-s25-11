@@ -39,7 +39,9 @@ describe("HelpRequestForm tests", () => {
       </Router>,
     );
     await screen.findByTestId("HelpRequestForm-requesterEmail");
-    const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+    const requesterEmailField = screen.getByTestId(
+      "HelpRequestForm-requesterEmail",
+    );
     const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
     const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
@@ -63,7 +65,9 @@ describe("HelpRequestForm tests", () => {
 
     await screen.findByText(/Requester Email is required/);
     expect(screen.getByText(/Team ID is required/)).toBeInTheDocument();
-    expect(screen.getByText(/Table or Breakout Room is required/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Table or Breakout Room is required/),
+    ).toBeInTheDocument();
     expect(screen.getByText(/Request Time is required/)).toBeInTheDocument();
     expect(screen.getByText(/Explanation is required/)).toBeInTheDocument();
   });
@@ -78,15 +82,21 @@ describe("HelpRequestForm tests", () => {
     );
     await screen.findByTestId("HelpRequestForm-requesterEmail");
 
-    const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+    const requesterEmailField = screen.getByTestId(
+      "HelpRequestForm-requesterEmail",
+    );
     const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
-    const tableField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
+    const tableField = screen.getByTestId(
+      "HelpRequestForm-tableOrBreakoutRoom",
+    );
     const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
     const explanationField = screen.getByTestId("HelpRequestForm-explanation");
     const solvedCheckbox = screen.getByTestId("HelpRequestForm-solved");
     const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
-    fireEvent.change(requesterEmailField, { target: { value: "test@ucsb.edu" } });
+    fireEvent.change(requesterEmailField, {
+      target: { value: "test@ucsb.edu" },
+    });
     fireEvent.change(teamIdField, { target: { value: "team01" } });
     fireEvent.change(tableField, { target: { value: "Table 3" } });
     fireEvent.change(requestTimeField, {
@@ -100,9 +110,7 @@ describe("HelpRequestForm tests", () => {
 
     await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
 
-    expect(
-      screen.queryByText(/is required/)
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/is required/)).not.toBeInTheDocument();
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
