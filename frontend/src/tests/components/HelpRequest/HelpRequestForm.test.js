@@ -27,7 +27,9 @@ describe("HelpRequestForm tests", () => {
         <HelpRequestForm />
       </Router>,
     );
-    expect(await screen.findByTestId("HelpRequestForm-requesterEmail")).toBeInTheDocument();
+    expect(
+      await screen.findByTestId("HelpRequestForm-requesterEmail"),
+    ).toBeInTheDocument();
     expect(screen.queryByTestId("HelpRequestForm-id")).not.toBeInTheDocument();
   });
 
