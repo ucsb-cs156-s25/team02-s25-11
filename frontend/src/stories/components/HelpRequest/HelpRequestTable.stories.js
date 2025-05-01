@@ -5,7 +5,7 @@ import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import { http, HttpResponse } from "msw";
 
 export default {
-  title: "components/UCSBDates/HelpRequestTable",
+  title: "components/HelpRequest/HelpRequestTable",
   component: HelpRequestTable,
 };
 
