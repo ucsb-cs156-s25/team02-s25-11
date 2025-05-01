@@ -220,7 +220,21 @@
 <a name='L155'></a><a href='#L155'>155</a>
 <a name='L156'></a><a href='#L156'>156</a>
 <a name='L157'></a><a href='#L157'>157</a>
-<a name='L158'></a><a href='#L158'>158</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -234,6 +248,12 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -381,7 +401,11 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 &nbsp;
-function <span class="fstat-no" title="function not covered" >HelpRequestForm(</span>{ initialContents, submitAction, buttonLabel = <span class="branch-0 cbranch-no" title="branch not covered" >"Create" </span>}) {
+function <span class="fstat-no" title="function not covered" >HelpRequestForm(</span>{
+  initialContents,
+  submitAction,
+  buttonLabel = <span class="branch-0 cbranch-no" title="branch not covered" >"Create",</span>
+}) {
   const {
     register,
     formState: { errors },
@@ -419,8 +443,9 @@ function <span class="fstat-no" title="function not covered" >HelpRequestForm(</
               id="requesterEmail"
               type="email"
               isInvalid={Boolean(errors.requesterEmail)}
-              {...register("requesterEmail", { 
-                required: "Requester Email is required." })}
+              {...register("requesterEmail", {
+                required: "Requester Email is required.",
+              })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
               {errors.requesterEmail?.message}
@@ -436,8 +461,9 @@ function <span class="fstat-no" title="function not covered" >HelpRequestForm(</
               id="teamId"
               type="text"
               isInvalid={Boolean(errors.teamId)}
-              {...register("teamId", { 
-                required: "Team ID is required." })}
+              {...register("teamId", {
+                required: "Team ID is required.",
+              })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
               {errors.teamId?.message}
@@ -449,7 +475,9 @@ function <span class="fstat-no" title="function not covered" >HelpRequestForm(</
       &lt;Row&gt;
         &lt;Col&gt;
           &lt;Form.Group className="mb-3"&gt;
-            &lt;Form.Label htmlFor="tableOrBreakoutRoom"&gt;Table/Breakout Room&lt;/Form.Label&gt;
+            &lt;Form.Label htmlFor="tableOrBreakoutRoom"&gt;
+              Table/Breakout Room
+            &lt;/Form.Label&gt;
             &lt;Form.Control
               data-testid="HelpRequestForm-tableOrBreakoutRoom"
               id="tableOrBreakoutRoom"
@@ -473,8 +501,9 @@ function <span class="fstat-no" title="function not covered" >HelpRequestForm(</
               id="requestTime"
               type="datetime-local"
               isInvalid={Boolean(errors.requestTime)}
-              {...register("requestTime", { 
-                required: "Request Time is required." })}
+              {...register("requestTime", {
+                required: "Request Time is required.",
+              })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
               {errors.requestTime?.message}
@@ -492,8 +521,9 @@ function <span class="fstat-no" title="function not covered" >HelpRequestForm(</
               id="explanation"
               type="text"
               isInvalid={Boolean(errors.explanation)}
-              {...register("explanation", { 
-                required: "Explanation is required." })}
+              {...register("explanation", {
+                required: "Explanation is required.",
+              })}
             /&gt;
             &lt;Form.Control.Feedback type="invalid"&gt;
               {errors.explanation?.message}
@@ -541,7 +571,7 @@ export default HelpRequestForm;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-01T04:28:41.527Z
+                at 2025-05-01T04:45:26.717Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
