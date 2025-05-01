@@ -21,6 +21,16 @@ describe("HelpRequestForm tests", () => {
     await screen.findByText(/Create/);
   });
 
+  test("renders correctly when no initialContents are passed", async () => {
+    render(
+      <Router>
+        <HelpRequestForm />
+      </Router>,
+    );
+    expect(await screen.findByTestId("HelpRequestForm-requesterEmail")).toBeInTheDocument();
+    expect(screen.queryByTestId("HelpRequestForm-id")).not.toBeInTheDocument();
+  });
+
   test("renders correctly when passing in a HelpRequest", async () => {
     render(
       <Router>
