@@ -21,9 +21,8 @@ function ArticlesForm({
 
   // Stryker disable Regex
   const isodate_regex =
-  /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+    /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
   // Stryker restore Regex
-
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
@@ -93,7 +92,6 @@ function ArticlesForm({
         </Form.Control.Feedback>
       </Form.Group>
 
-
       <Form.Group className="mb-3">
         <Form.Label htmlFor="email">Email</Form.Label>
         <Form.Control
@@ -111,21 +109,21 @@ function ArticlesForm({
       </Form.Group>
 
       <Form.Group className="mb-3">
-            <Form.Label htmlFor="dateAdded">DateAdded (iso format)</Form.Label>
-            <Form.Control
-              data-testid={testIdPrefix + "-dateAdded"}
-              id="dateAdded"
-              type="datetime-local"
-              isInvalid={Boolean(errors.dateAdded)}
-              {...register("dateAdded", {
-                required: true,
-                pattern: isodate_regex,
-              })}
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.dateAdded && "DateAdded is required. "}
-            </Form.Control.Feedback>
-          </Form.Group>
+        <Form.Label htmlFor="dateAdded">DateAdded (iso format)</Form.Label>
+        <Form.Control
+          data-testid={testIdPrefix + "-dateAdded"}
+          id="dateAdded"
+          type="datetime-local"
+          isInvalid={Boolean(errors.dateAdded)}
+          {...register("dateAdded", {
+            required: true,
+            pattern: isodate_regex,
+          })}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.dateAdded && "DateAdded is required. "}
+        </Form.Control.Feedback>
+      </Form.Group>
 
       <Button type="submit" data-testid={testIdPrefix + "-submit"}>
         {buttonLabel}
