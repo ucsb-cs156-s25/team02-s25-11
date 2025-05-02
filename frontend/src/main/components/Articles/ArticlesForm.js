@@ -17,7 +17,7 @@ function ArticlesForm({
 
   const navigate = useNavigate();
 
-  const testIdPrefix = "ArticleForm";
+  const testIdPrefix = "ArticlesForm";
 
   // Stryker disable Regex
   const isodate_regex =
