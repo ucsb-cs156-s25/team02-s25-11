@@ -69,6 +69,23 @@ describe("HelpRequestIndexPage tests", () => {
     expect(button).toHaveAttribute("style", "float: right;");
   });
 
+  test("table is empty on initial render before backend data arrives", async () => {
+    setupUserOnly();
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <HelpRequestIndexPage />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    const rows = screen.queryAllByTestId(
+      /HelpRequestTable-cell-row-[0-9]+-col-id/,
+    );
+    expect(rows.length).toBe(0);
+  });
+
   test("renders three helpRequest correctly for regular user", async () => {
     setupUserOnly();
     axiosMock
