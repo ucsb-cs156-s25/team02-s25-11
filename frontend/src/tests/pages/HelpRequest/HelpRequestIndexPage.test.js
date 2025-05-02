@@ -62,15 +62,10 @@ describe("HelpRequestIndexPage tests", () => {
     );
 
     await waitFor(() => {
-      expect(
-        screen.getByText(/Create HelpRequest/),
-      ).toBeInTheDocument();
+      expect(screen.getByText(/Create HelpRequest/)).toBeInTheDocument();
     });
     const button = screen.getByText(/Create HelpRequest/);
-    expect(button).toHaveAttribute(
-      "href",
-      "/helprequest/create",
-    );
+    expect(button).toHaveAttribute("href", "/helprequest/create");
     expect(button).toHaveAttribute("style", "float: right;");
   });
 
@@ -78,10 +73,7 @@ describe("HelpRequestIndexPage tests", () => {
     setupUserOnly();
     axiosMock
       .onGet("/api/helprequest/all")
-      .reply(
-        200,
-        helpRequestFixtures.threeHelpRequests,
-      );
+      .reply(200, helpRequestFixtures.threeHelpRequests);
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -103,9 +95,7 @@ describe("HelpRequestIndexPage tests", () => {
       "3",
     );
 
-    const createHelpRequestButton = screen.queryByText(
-      "Create HelpRequest",
-    );
+    const createHelpRequestButton = screen.queryByText("Create HelpRequest");
     expect(createHelpRequestButton).not.toBeInTheDocument();
 
     const requesterEmail = screen.getByText("cgaucho@ucsb.edu");
@@ -122,14 +112,10 @@ describe("HelpRequestIndexPage tests", () => {
 
     // for non-admin users, details button is visible, but the edit and delete buttons should not be visible
     expect(
-      screen.queryByTestId(
-        "HelpRequestTable-cell-row-0-col-Delete-button",
-      ),
+      screen.queryByTestId("HelpRequestTable-cell-row-0-col-Delete-button"),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByTestId(
-        "HelpRequestTable-cell-row-0-col-Edit-button",
-      ),
+      screen.queryByTestId("HelpRequestTable-cell-row-0-col-Edit-button"),
     ).not.toBeInTheDocument();
   });
 
@@ -164,10 +150,7 @@ describe("HelpRequestIndexPage tests", () => {
 
     axiosMock
       .onGet("/api/helprequest/all")
-      .reply(
-        200,
-        helpRequestFixtures.threeHelpRequests,
-      );
+      .reply(200, helpRequestFixtures.threeHelpRequests);
     axiosMock
       .onDelete("/api/helprequest")
       .reply(200, "helpRequest with id 1 was deleted");
@@ -198,17 +181,13 @@ describe("HelpRequestIndexPage tests", () => {
     fireEvent.click(deleteButton);
 
     await waitFor(() => {
-      expect(mockToast).toBeCalledWith(
-        "helpRequest with id 1 was deleted",
-      );
+      expect(mockToast).toBeCalledWith("helpRequest with id 1 was deleted");
     });
 
     await waitFor(() => {
       expect(axiosMock.history.delete.length).toBe(1);
     });
-    expect(axiosMock.history.delete[0].url).toBe(
-      "/api/helprequest",
-    );
+    expect(axiosMock.history.delete[0].url).toBe("/api/helprequest");
     expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
   });
 });
