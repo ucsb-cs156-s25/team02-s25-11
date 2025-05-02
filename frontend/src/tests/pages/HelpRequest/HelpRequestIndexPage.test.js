@@ -7,7 +7,6 @@ import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
-import HelpRequestIndexPage from "main/pages/HelpRequest/HelpRequestIndexPage";
 
 describe("HelpRequestIndexPage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
