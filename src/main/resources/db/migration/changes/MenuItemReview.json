@@ -45,6 +45,7 @@
                       "type": "VARCHAR(255)"
                     }
                   },
+                  
                   {
                     "column": {
                       "name": "STARS",
