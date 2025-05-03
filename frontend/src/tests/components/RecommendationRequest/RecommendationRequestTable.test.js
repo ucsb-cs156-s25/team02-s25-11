@@ -150,7 +150,7 @@ describe("UserTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <RecommendationRequestTable
-            dates={recommendationRequestFixtures.threeDates}
+            dates={recommendationRequestFixtures.threeRequests}
             currentUser={currentUser}
           />
         </MemoryRouter>
