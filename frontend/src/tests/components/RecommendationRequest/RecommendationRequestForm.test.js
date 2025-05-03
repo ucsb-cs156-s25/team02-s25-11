@@ -132,6 +132,7 @@ describe("RecommendationRequestForm tests", () => {
     expect(
       screen.queryByText(/dateRequested is required./),
     ).not.toBeInTheDocument();
+    expect(screen.getByText("Create")).toBeInTheDocument();
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
