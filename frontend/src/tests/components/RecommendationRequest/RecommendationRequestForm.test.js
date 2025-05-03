@@ -24,11 +24,13 @@ describe("RecommendationRequestForm tests", () => {
     await screen.findByText(/Date Needed \(iso format\)/);
     await screen.findByText(/Done?/);
   });
-  
+
   test("renders correctly when passing in a RecommendationRequest", async () => {
     render(
       <Router>
-        <RecommendationRequestForm initialContents={recommendationRequestFixtures.oneRequest} />
+        <RecommendationRequestForm
+          initialContents={recommendationRequestFixtures.oneRequest}
+        />
       </Router>,
     );
     await screen.findByTestId(/RecommendationRequestForm-id/);
@@ -43,11 +45,21 @@ describe("RecommendationRequestForm tests", () => {
       </Router>,
     );
     await screen.findByTestId("RecommendationRequestForm-requesterEmail");
-    const requesterEmailField = screen.getByTestId("RecommendationRequestForm-requesterEmail");
-    const professorEmailField = screen.getByTestId("RecommendationRequestForm-professorEmail");
-    const explanationField = screen.getByTestId("RecommendationRequestForm-explanation");
-    const dateRequestedField = screen.getByTestId("RecommendationRequestForm-dateRequested");
-    const dateNeededField = screen.getByTestId("RecommendationRequestForm-dateNeeded");
+    const requesterEmailField = screen.getByTestId(
+      "RecommendationRequestForm-requesterEmail",
+    );
+    const professorEmailField = screen.getByTestId(
+      "RecommendationRequestForm-professorEmail",
+    );
+    const explanationField = screen.getByTestId(
+      "RecommendationRequestForm-explanation",
+    );
+    const dateRequestedField = screen.getByTestId(
+      "RecommendationRequestForm-dateRequested",
+    );
+    const dateNeededField = screen.getByTestId(
+      "RecommendationRequestForm-dateNeeded",
+    );
     const doneField = screen.getByTestId("RecommendationRequestForm-done");
     const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
@@ -57,7 +69,7 @@ describe("RecommendationRequestForm tests", () => {
 
     await screen.findByText(/professorEmail is required./);
   });
-  
+
   test("Correct Error messsages on missing input", async () => {
     render(
       <Router>
@@ -75,7 +87,7 @@ describe("RecommendationRequestForm tests", () => {
     expect(screen.getByText(/dateRequested is required./)).toBeInTheDocument();
     expect(screen.getByText(/dateNeeded is required./)).toBeInTheDocument();
   });
-  
+
   test("No Error messages on good input", async () => {
     const mockSubmitAction = jest.fn();
 
@@ -86,24 +98,40 @@ describe("RecommendationRequestForm tests", () => {
     );
     await screen.findByTestId("RecommendationRequestForm-requesterEmail");
 
-    const requesterEmailField = screen.getByTestId("RecommendationRequestForm-requesterEmail");
-    const professorEmailField = screen.getByTestId("RecommendationRequestForm-professorEmail");
-    const explanationField = screen.getByTestId("RecommendationRequestForm-explanation");
-    const dateRequestedField = screen.getByTestId("RecommendationRequestForm-dateRequested");
-    const dateNeededField = screen.getByTestId("RecommendationRequestForm-dateNeeded");
+    const requesterEmailField = screen.getByTestId(
+      "RecommendationRequestForm-requesterEmail",
+    );
+    const professorEmailField = screen.getByTestId(
+      "RecommendationRequestForm-professorEmail",
+    );
+    const explanationField = screen.getByTestId(
+      "RecommendationRequestForm-explanation",
+    );
+    const dateRequestedField = screen.getByTestId(
+      "RecommendationRequestForm-dateRequested",
+    );
+    const dateNeededField = screen.getByTestId(
+      "RecommendationRequestForm-dateNeeded",
+    );
     const doneField = screen.getByTestId("RecommendationRequestForm-done");
     const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
-    fireEvent.change(requesterEmailField, { target: { value: "user3@ucsb.edu" } });
-    fireEvent.change(professorEmailField, { target: { value: "user4@ucsb.edu" } });
-    fireEvent.change(explanationField, { target: { value: "this is a recommendation" } });
+    fireEvent.change(requesterEmailField, {
+      target: { value: "user3@ucsb.edu" },
+    });
+    fireEvent.change(professorEmailField, {
+      target: { value: "user4@ucsb.edu" },
+    });
+    fireEvent.change(explanationField, {
+      target: { value: "this is a recommendation" },
+    });
     fireEvent.change(dateRequestedField, {
       target: { value: "2025-01-02T12:00" },
     });
     fireEvent.change(dateNeededField, {
-        target: { value: "2025-01-03T12:00" },
-      });
-      fireEvent.change(doneField, { target: { value: true } });
+      target: { value: "2025-01-03T12:00" },
+    });
+    fireEvent.change(doneField, { target: { value: true } });
     fireEvent.click(submitButton);
 
     await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
@@ -129,5 +157,4 @@ describe("RecommendationRequestForm tests", () => {
 
     await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith(-1));
   });
-
 });
