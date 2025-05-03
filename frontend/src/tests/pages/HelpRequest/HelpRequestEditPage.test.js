@@ -47,9 +47,7 @@ describe("HelpRequestEditPage tests", () => {
       axiosMock
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
-      axiosMock
-        .onGet("/api/helprequest", { params: { id: 1 } })
-        .timeout();
+      axiosMock.onGet("/api/helprequest", { params: { id: 1 } }).timeout();
     });
 
     const queryClient = new QueryClient();
@@ -61,12 +59,12 @@ describe("HelpRequestEditPage tests", () => {
           <MemoryRouter>
             <HelpRequestEditPage />
           </MemoryRouter>
-        </QueryClientProvider>
+        </QueryClientProvider>,
       );
 
       await screen.findByText("Edit HelpRequest");
       expect(
-        screen.queryByTestId("HelpRequestForm-requesterEmail")
+        screen.queryByTestId("HelpRequestForm-requesterEmail"),
       ).not.toBeInTheDocument();
 
       restoreConsole();
@@ -113,16 +111,24 @@ describe("HelpRequestEditPage tests", () => {
           <MemoryRouter>
             <HelpRequestEditPage />
           </MemoryRouter>
-        </QueryClientProvider>
+        </QueryClientProvider>,
       );
 
       await screen.findByTestId("HelpRequestForm-id");
 
-      const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+      const requesterEmailField = screen.getByTestId(
+        "HelpRequestForm-requesterEmail",
+      );
       const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
-      const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
-      const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
-      const explanationField = screen.getByTestId("HelpRequestForm-explanation");
+      const tableOrBreakoutRoomField = screen.getByTestId(
+        "HelpRequestForm-tableOrBreakoutRoom",
+      );
+      const requestTimeField = screen.getByTestId(
+        "HelpRequestForm-requestTime",
+      );
+      const explanationField = screen.getByTestId(
+        "HelpRequestForm-explanation",
+      );
       const solvedField = screen.getByTestId("HelpRequestForm-solved");
       const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
@@ -133,18 +139,24 @@ describe("HelpRequestEditPage tests", () => {
       expect(explanationField).toHaveValue("Need help with Swagger-ui");
       expect(solvedField).not.toBeChecked();
 
-      fireEvent.change(requesterEmailField, { target: { value: "ldelplaya@ucsb.edu" } });
+      fireEvent.change(requesterEmailField, {
+        target: { value: "ldelplaya@ucsb.edu" },
+      });
       fireEvent.change(teamIdField, { target: { value: "s22-6pm-3" } });
       fireEvent.change(tableOrBreakoutRoomField, { target: { value: "11" } });
-      fireEvent.change(requestTimeField, { target: { value: "2022-04-20T18:31" } });
-      fireEvent.change(explanationField, { target: { value: "Dokku problems" } });
+      fireEvent.change(requestTimeField, {
+        target: { value: "2022-04-20T18:31" },
+      });
+      fireEvent.change(explanationField, {
+        target: { value: "Dokku problems" },
+      });
       fireEvent.click(solvedField);
 
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());
       expect(mockToast).toBeCalledWith(
-        "HelpRequest Updated - id: 1 requesterEmail: ldelplaya@ucsb.edu"
+        "HelpRequest Updated - id: 1 requesterEmail: ldelplaya@ucsb.edu",
       );
 
       expect(mockNavigate).toBeCalledWith({
@@ -161,7 +173,7 @@ describe("HelpRequestEditPage tests", () => {
           requestTime: "2022-04-20T18:31",
           explanation: "Dokku problems",
           solved: true,
-        })
+        }),
       );
     });
 
@@ -171,31 +183,45 @@ describe("HelpRequestEditPage tests", () => {
           <MemoryRouter>
             <HelpRequestEditPage />
           </MemoryRouter>
-        </QueryClientProvider>
+        </QueryClientProvider>,
       );
 
       await screen.findByTestId("HelpRequestForm-id");
 
-      const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+      const requesterEmailField = screen.getByTestId(
+        "HelpRequestForm-requesterEmail",
+      );
       const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
-      const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
-      const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
-      const explanationField = screen.getByTestId("HelpRequestForm-explanation");
+      const tableOrBreakoutRoomField = screen.getByTestId(
+        "HelpRequestForm-tableOrBreakoutRoom",
+      );
+      const requestTimeField = screen.getByTestId(
+        "HelpRequestForm-requestTime",
+      );
+      const explanationField = screen.getByTestId(
+        "HelpRequestForm-explanation",
+      );
       const solvedField = screen.getByTestId("HelpRequestForm-solved");
       const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
-      fireEvent.change(requesterEmailField, { target: { value: "ldelplaya@ucsb.edu" } });
+      fireEvent.change(requesterEmailField, {
+        target: { value: "ldelplaya@ucsb.edu" },
+      });
       fireEvent.change(teamIdField, { target: { value: "s22-6pm-3" } });
       fireEvent.change(tableOrBreakoutRoomField, { target: { value: "11" } });
-      fireEvent.change(requestTimeField, { target: { value: "2022-04-20T18:31" } });
-      fireEvent.change(explanationField, { target: { value: "Dokku problems" } });
+      fireEvent.change(requestTimeField, {
+        target: { value: "2022-04-20T18:31" },
+      });
+      fireEvent.change(explanationField, {
+        target: { value: "Dokku problems" },
+      });
       fireEvent.click(solvedField);
 
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());
       expect(mockToast).toBeCalledWith(
-        "HelpRequest Updated - id: 1 requesterEmail: ldelplaya@ucsb.edu"
+        "HelpRequest Updated - id: 1 requesterEmail: ldelplaya@ucsb.edu",
       );
       expect(mockNavigate).toBeCalledWith({
         to: "/helprequest",
