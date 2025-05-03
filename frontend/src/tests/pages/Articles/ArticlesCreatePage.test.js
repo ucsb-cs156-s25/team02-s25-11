@@ -1,17 +1,13 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-
-import { render, screen } from "@testing-library/react";
 import ArticlesCreatePage from "main/pages/Articles/ArticlesCreatePage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
-
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-
-
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 
+// toast mock
 const mockToast = jest.fn();
 jest.mock("react-toastify", () => {
   const originalModule = jest.requireActual("react-toastify");
@@ -22,6 +18,7 @@ jest.mock("react-toastify", () => {
   };
 });
 
+// Navigate mock
 const mockNavigate = jest.fn();
 jest.mock("react-router-dom", () => {
   const originalModule = jest.requireActual("react-router-dom");
@@ -37,18 +34,9 @@ jest.mock("react-router-dom", () => {
 
 describe("ArticlesCreatePage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
-
-  beforeEach(() => {
-    jest.clearAllMocks();
-
-import axios from "axios";
-import AxiosMockAdapter from "axios-mock-adapter";
-
-describe("ArticlesCreatePage tests", () => {
-  const axiosMock = new AxiosMockAdapter(axios);
+  const queryClient = new QueryClient();
 
   const setupUserOnly = () => {
-
     axiosMock.reset();
     axiosMock.resetHistory();
     axiosMock
@@ -57,10 +45,12 @@ describe("ArticlesCreatePage tests", () => {
     axiosMock
       .onGet("/api/systemInfo")
       .reply(200, systemInfoFixtures.showingNeither);
+  };
 
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
 
-  const queryClient = new QueryClient();
   test("renders without crashing", async () => {
     render(
       <QueryClientProvider client={queryClient}>
@@ -75,8 +65,8 @@ describe("ArticlesCreatePage tests", () => {
     });
   });
 
-  test("on submit, makes request to backend, and redirects to /articles", async () => {
-    const queryClient = new QueryClient();
+  test("Renders expected content and submits form", async () => {
+    setupUserOnly();
 
     const article = {
       id: 1,
@@ -89,17 +79,6 @@ describe("ArticlesCreatePage tests", () => {
 
     axiosMock.onPost("/api/articles/post").reply(202, article);
 
-
-  };
-
-  const queryClient = new QueryClient();
-  test("Renders expected content", async () => {
-    // arrange
-
-    setupUserOnly();
-
-    // act
-
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
@@ -108,66 +87,36 @@ describe("ArticlesCreatePage tests", () => {
       </QueryClientProvider>,
     );
 
-
-    await waitFor(() => {
-      expect(screen.getByLabelText("Title")).toBeInTheDocument();
+    fireEvent.change(screen.getByLabelText("Title"), {
+      target: { value: article.title },
+    });
+    fireEvent.change(screen.getByLabelText("Url"), {
+      target: { value: article.url },
+    });
+    fireEvent.change(screen.getByLabelText("Explanation"), {
+      target: { value: article.explanation },
+    });
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: article.email },
+    });
+    fireEvent.change(screen.getByLabelText("DateAdded (iso format)"), {
+      target: { value: article.dateAdded },
     });
 
-    const titleInput = screen.getByLabelText("Title");
-    expect(titleInput).toBeInTheDocument();
-
-    const urlInput = screen.getByLabelText("Url");
-    expect(urlInput).toBeInTheDocument();
-
-    const explanationInput = screen.getByLabelText("Explanation");
-    expect(explanationInput).toBeInTheDocument();
-
-    const emailInput = screen.getByLabelText("Email");
-    expect(emailInput).toBeInTheDocument();
-
-    const dateAddedInput = screen.getByLabelText("DateAdded (iso format)");
-    expect(dateAddedInput).toBeInTheDocument();
-
-    const createButton = screen.getByText("Create");
-    expect(createButton).toBeInTheDocument();
-
-    fireEvent.change(titleInput, { target: { value: "add table" } });
-    fireEvent.change(urlInput, {
-      target: {
-        value:
-          "https://github.com/ucsb-cs156-s25/team02-s25-11/commit/525f9901430a9c435377f833b166147fa6c04e61",
-      },
-    });
-    fireEvent.change(explanationInput, {
-      target: {
-        value: "add UCSBDiningCommonsMenuItemTable, tests, and stories",
-      },
-    });
-    fireEvent.change(emailInput, { target: { value: "saul_diaz@ucsb.edu" } });
-    fireEvent.change(dateAddedInput, {
-      target: { value: "2025-05-01T02:22:14.637" },
-    });
-    fireEvent.click(createButton);
+    fireEvent.click(screen.getByText("Create"));
 
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
-
     expect(axiosMock.history.post[0].params).toEqual({
-      title: "add table",
-      url: "https://github.com/ucsb-cs156-s25/team02-s25-11/commit/525f9901430a9c435377f833b166147fa6c04e61",
-      explanation: "add UCSBDiningCommonsMenuItemTable, tests, and stories",
-      email: "saul_diaz@ucsb.edu",
-      dateAdded: "2025-05-01T02:22:14.637",
+      title: article.title,
+      url: article.url,
+      explanation: article.explanation,
+      email: article.email,
+      dateAdded: article.dateAdded,
     });
 
-    // assert - check that the toast was called with the expected message
     expect(mockToast).toHaveBeenCalledWith(
-      "New articles Created - id: 1 title: add table",
+      `New articles Created - id: ${article.id} title: ${article.title}`,
     );
     expect(mockNavigate).toHaveBeenCalledWith({ to: "/articles" });
-
-    // assert
-
-    await screen.findByText("Create page not yet implemented");
-
   });
 });
