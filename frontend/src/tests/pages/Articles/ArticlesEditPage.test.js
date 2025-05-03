@@ -95,7 +95,6 @@ describe("ArticlesEditPage tests", () => {
         explanation: "edit page",
         email: "shuang_li@ucsb.edu",
         dateAdded: "2025-05-02T09:11:14.637",
-
       });
     });
 
@@ -128,10 +127,14 @@ describe("ArticlesEditPage tests", () => {
       expect(titleField).toHaveValue("add table");
 
       expect(urlField).toBeInTheDocument();
-      expect(urlField).toHaveValue("https://github.com/ucsb-cs156-s25/team02-s25-11/commit/525f9901430a9c435377f833b166147fa6c04e61");
+      expect(urlField).toHaveValue(
+        "https://github.com/ucsb-cs156-s25/team02-s25-11/commit/525f9901430a9c435377f833b166147fa6c04e61",
+      );
 
       expect(explanationField).toBeInTheDocument();
-      expect(explanationField).toHaveValue("add UCSBDiningCommonsMenuItemTable, tests, and stories");
+      expect(explanationField).toHaveValue(
+        "add UCSBDiningCommonsMenuItemTable, tests, and stories",
+      );
 
       expect(emailField).toBeInTheDocument();
       expect(emailField).toHaveValue("saul_diaz@ucsb.edu");
@@ -179,58 +182,58 @@ describe("ArticlesEditPage tests", () => {
       ); // posted object
     });
 
-  //   test("Changes when you click Update", async () => {
-  //     render(
-  //       <QueryClientProvider client={queryClient}>
-  //         <MemoryRouter>
-  //           <ArticlesEditPage />
-  //         </MemoryRouter>
-  //       </QueryClientProvider>,
-  //     );
+    //   test("Changes when you click Update", async () => {
+    //     render(
+    //       <QueryClientProvider client={queryClient}>
+    //         <MemoryRouter>
+    //           <ArticlesEditPage />
+    //         </MemoryRouter>
+    //       </QueryClientProvider>,
+    //     );
 
-  //     await screen.findByTestId("ArticlesForm-id");
+    //     await screen.findByTestId("ArticlesForm-id");
 
-  //     const idField = screen.getByTestId("ArticlesForm-id");
-  //     const titleField = screen.getByTestId("ArticlesForm-title");
-  //     const urlField = screen.getByLabelText("Url");
-  //     const explanationField = screen.getByLabelText("Explanation");
-  //     const emailField = screen.getByLabelText("Email");
-  //     const dateAddedField = screen.getByLabelText("DateAdded");
+    //     const idField = screen.getByTestId("ArticlesForm-id");
+    //     const titleField = screen.getByTestId("ArticlesForm-title");
+    //     const urlField = screen.getByLabelText("Url");
+    //     const explanationField = screen.getByLabelText("Explanation");
+    //     const emailField = screen.getByLabelText("Email");
+    //     const dateAddedField = screen.getByLabelText("DateAdded");
 
-  //     const submitButton = screen.getByText("update");
+    //     const submitButton = screen.getByText("update");
 
-  //     expect(idField).toBeInTheDocument();
-  //     expect(idField).toHaveValue("17");
+    //     expect(idField).toBeInTheDocument();
+    //     expect(idField).toHaveValue("17");
 
-  //     expect(titleField).toBeInTheDocument();
-  //     expect(titleField).toHaveValue("add table");
+    //     expect(titleField).toBeInTheDocument();
+    //     expect(titleField).toHaveValue("add table");
 
-  //     expect(urlField).toBeInTheDocument();
-  //     expect(urlField).toHaveValue("https://github.com/ucsb-cs156-s25/team02-s25-11/commit/525f9901430a9c435377f833b166147fa6c04e61");
+    //     expect(urlField).toBeInTheDocument();
+    //     expect(urlField).toHaveValue("https://github.com/ucsb-cs156-s25/team02-s25-11/commit/525f9901430a9c435377f833b166147fa6c04e61");
 
-  //     expect(explanationField).toBeInTheDocument();
-  //     expect(explanationField).toHaveValue("add UCSBDiningCommonsMenuItemTable, tests, and stories");
+    //     expect(explanationField).toBeInTheDocument();
+    //     expect(explanationField).toHaveValue("add UCSBDiningCommonsMenuItemTable, tests, and stories");
 
-  //     expect(emailField).toBeInTheDocument();
-  //     expect(emailField).toHaveValue("saul_diaz@ucsb.edu");
+    //     expect(emailField).toBeInTheDocument();
+    //     expect(emailField).toHaveValue("saul_diaz@ucsb.edu");
 
-  //     expect(dateAddedField).toBeInTheDocument();
-  //     expect(dateAddedField).toHaveValue("2025-05-01T02:22:14.637");
+    //     expect(dateAddedField).toBeInTheDocument();
+    //     expect(dateAddedField).toHaveValue("2025-05-01T02:22:14.637");
 
-  //     expect(submitButton).toHaveTextContent("Update");
+    //     expect(submitButton).toHaveTextContent("Update");
 
-  //     fireEvent.change(nameField, {
-  //       target: { value: "Freebirds World Burrito" },
-  //     });
-  //     fireEvent.change(descriptionField, { target: { value: "Big Burritos" } });
+    //     fireEvent.change(nameField, {
+    //       target: { value: "Freebirds World Burrito" },
+    //     });
+    //     fireEvent.change(descriptionField, { target: { value: "Big Burritos" } });
 
-  //     fireEvent.click(submitButton);
+    //     fireEvent.click(submitButton);
 
-  //     await waitFor(() => expect(mockToast).toBeCalled());
-  //     expect(mockToast).toHaveBeenCalledWith(
-  //       "Article Updated - id: 17 name: Freebirds World Burrito",
-  //     );
-  //     expect(mockNavigate).toHaveBeenCalledWith({ to: "/articles" });
-  //   });
+    //     await waitFor(() => expect(mockToast).toBeCalled());
+    //     expect(mockToast).toHaveBeenCalledWith(
+    //       "Article Updated - id: 17 name: Freebirds World Burrito",
+    //     );
+    //     expect(mockNavigate).toHaveBeenCalledWith({ to: "/articles" });
+    //   });
   });
 });
