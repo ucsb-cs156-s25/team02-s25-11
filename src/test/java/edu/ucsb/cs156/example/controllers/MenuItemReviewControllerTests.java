@@ -79,7 +79,7 @@ public class MenuItemReviewControllerTests  extends ControllerTestCase
                 // arrange
 
                 LocalDateTime ldt1 = LocalDateTime.parse("2025-01-01T00:00:00");
-                LocalDateTime ldt2 = LocalDateTime.parse("2025-01-01T00:00:00");
+                LocalDateTime ldt2 = LocalDateTime.parse("2025-03-03T00:00:00");
 
                 MenuItemReview menuItemReview1 = MenuItemReview.builder()
                 .comments("good")
@@ -203,7 +203,7 @@ public class MenuItemReviewControllerTests  extends ControllerTestCase
         public void admin_can_edit_an_existing_menuitemreview() throws Exception {
                 // arrange
                 LocalDateTime ldt1 = LocalDateTime.parse("2025-01-01T00:00:00");
-                LocalDateTime ldt2 = LocalDateTime.parse("2025-01-01T00:00:00");
+                LocalDateTime ldt2 = LocalDateTime.parse("2025-04-02T00:00:00");
 
                 MenuItemReview menuItemReviewOrig = MenuItemReview.builder()
                                 .comments("good")
@@ -279,7 +279,7 @@ public class MenuItemReviewControllerTests  extends ControllerTestCase
         @Test
         public void admin_can_delete_a_review() throws Exception {
                 // arrange
-                LocalDateTime ldt1 = LocalDateTime.parse("2025-01-01T00:00:00");
+                LocalDateTime ldt1 = LocalDateTime.parse("2025-05-01T00:00:00");
 
                 MenuItemReview menuItemReview1 = MenuItemReview.builder()
                                 .comments("bad")
