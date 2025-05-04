@@ -40,4 +40,8 @@ describe("RecommendationRequestEditPage tests", () => {
     // assert
     await screen.findByText("Edit page not yet implemented");
   });
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 813f2c6 (added reqrequest page placeholders)

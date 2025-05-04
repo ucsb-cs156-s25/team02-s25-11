@@ -20,6 +20,9 @@ import UCSBOrganizationsIndexPage from "main/pages/UCSBOrganizations/UCSBOrganiz
 import UCSBOrganizationsCreatePage from "main/pages/UCSBOrganizations/UCSBOrganizationsCreatePage";
 import UCSBOrganizationsEditPage from "main/pages/UCSBOrganizations/UCSBOrganizationsEditPage";
 
+import RestaurantIndexPage from "main/pages/RecommendationRequest/RecommendationRequestIndexPage";
+import RestaurantCreatePage from "main/pages/RecommendationRequest/RecommendationRequestCreatePage";
+import RestaurantEditPage from "main/pages/RecommendationRequest/RecommendationRequestEditPage";
 
 import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";

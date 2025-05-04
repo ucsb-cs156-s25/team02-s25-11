@@ -47,4 +47,8 @@ describe("RecommendationRequestIndexPage tests", () => {
     expect(screen.getByText("Create")).toBeInTheDocument();
     expect(screen.getByText("Edit")).toBeInTheDocument();
   });
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 813f2c6 (added reqrequest page placeholders)
