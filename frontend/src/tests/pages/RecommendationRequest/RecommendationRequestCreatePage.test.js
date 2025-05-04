@@ -113,6 +113,40 @@ describe("RecommendationRequestCreatePage tests", () => {
     await waitFor(() => {
       expect(
         screen.getByTestId("RecommendationRequestForm-requesterEmail"),
+<<<<<<< HEAD
+=======
+      ).toBeInTheDocument();
+    });
+  });
+
+  test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
+    const queryClient = new QueryClient();
+    const recommendationRequest = {
+      id: 1,
+      requesterEmail: "user10@ucsb.edu",
+      professorEmail: "user11@ucsb.edu",
+      explanation: "this is an explanation",
+      dateRequested: "2022-02-02T00:00",
+      dateNeeded: "2023-02-02T00:00",
+      done: true,
+    };
+
+    axiosMock
+      .onPost("/api/recommendationrequest/post")
+      .reply(202, recommendationRequest);
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <RecommendationRequestCreatePage />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    await waitFor(() => {
+      expect(
+        screen.getByTestId("RecommendationRequestForm-requesterEmail"),
+>>>>>>> a93d2d8 (added page and page tests)
       ).toBeInTheDocument();
     });
 
