@@ -5,7 +5,7 @@ const menuItemReviewFixtures = {
     revieweremail: "7432@ucsb.edu",
     stars: 4,
     comments: "good",
-    dateReviewed: "2025-01-01T00:00:00",
+    datereviewed: "2025-01-01T00:00:00",
   },
 
   threeMenuItemReview: [
@@ -15,7 +15,7 @@ const menuItemReviewFixtures = {
       revieweremail: "2345@ucsb.edu",
       stars: 5,
       comments: "delicious",
-      dateReviewed: "2025-01-01T00:00:00",
+      datereviewed: "2025-01-01T00:00:00",
     },
 
     {
@@ -24,7 +24,7 @@ const menuItemReviewFixtures = {
       revieweremail: "7643@ucsb.edu",
       stars: 1,
       comments: "bad",
-      dateReviewed: "2025-01-01T00:00:00",
+      datereviewed: "2025-01-01T00:00:00",
     },
 
     {
@@ -33,7 +33,7 @@ const menuItemReviewFixtures = {
       revieweremail: "654@ucsb.edu",
       stars: 3,
       comments: "okay",
-      dateReviewed: "2025-01-01T00:00:00",
+      datereviewed: "2025-01-01T00:00:00",
     },
   ],
 };
