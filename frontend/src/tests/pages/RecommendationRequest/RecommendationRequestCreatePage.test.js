@@ -57,18 +57,21 @@ describe("RecommendationRequestCreatePage tests", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByTestId("RecommendationRequestForm-quarterYYYYQ"),
+        screen.getByTestId("RecommendationRequestForm-requesterEmail"),
       ).toBeInTheDocument();
     });
   });
 
   test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
     const queryClient = new QueryClient();
-    const ucsbDate = {
-      id: 17,
-      quarterYYYYQField: 20221,
-      name: "Groundhog Day",
-      localDateTime: "2022-02-02T00:00",
+    const recommendationRequest = {
+      id: 1,
+      requesterEmail: "user10@ucsb.edu",
+      professorEmail: "user11@ucsb.edu",
+      explanation: "this is an explanation",
+      dateRequested: "2022-02-02T00:00",
+      dateNeeded: "2023-02-02T00:00",
+      done: true,
     };
 
     axiosMock
@@ -78,31 +81,51 @@ describe("RecommendationRequestCreatePage tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBDatesCreatePage />
+          <RecommendationRequestCreatePage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
     await waitFor(() => {
       expect(
-        screen.getByTestId("RecommendationRequestForm-quarterYYYYQ"),
+        screen.getByTestId("RecommendationRequestForm-requesterEmail"),
       ).toBeInTheDocument();
     });
 
-    const quarterYYYYQField = screen.getByTestId(
-      "RecommendationRequestForm-quarterYYYYQ",
+    const requesterEmailField = screen.getByTestId(
+      "RecommendationRequestForm-requesterEmail",
     );
-    const nameField = screen.getByTestId("RecommendationRequestForm-name");
-    const localDateTimeField = screen.getByTestId(
-      "RecommendationRequestForm-localDateTime",
+    const professorEmailField = screen.getByTestId(
+      "RecommendationRequestForm-professorEmail",
     );
+    const explanationField = screen.getByTestId(
+      "RecommendationRequestForm-explanation",
+    );
+    const dateRequestedField = screen.getByTestId(
+      "RecommendationRequestForm-dateRequested",
+    );
+    const dateNeededField = screen.getByTestId(
+      "RecommendationRequestForm-dateNeeded",
+    );
+    const doneField = screen.getByTestId("RecommendationRequestForm-done");
     const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
-    fireEvent.change(quarterYYYYQField, { target: { value: "20221" } });
-    fireEvent.change(nameField, { target: { value: "Groundhog Day" } });
-    fireEvent.change(localDateTimeField, {
-      target: { value: "2022-02-02T00:00" },
+    fireEvent.change(requesterEmailField, {
+      target: { value: "user22@ucsb.edu" },
     });
+    fireEvent.change(professorEmailField, {
+      target: { value: "user23@ucsb.edu" },
+    });
+    fireEvent.change(explanationField, {
+      target: { value: "this is another explanation" },
+    });
+    fireEvent.change(dateRequestedField, {
+      target: { value: "2021-02-02T00:00" },
+    });
+    fireEvent.change(dateNeededField, {
+      target: { value: "2021-02-03T00:00" },
+    });
+    fireEvent.change(doneField, { target: { value: false } });
 
     expect(submitButton).toBeInTheDocument();
 
@@ -111,13 +134,16 @@ describe("RecommendationRequestCreatePage tests", () => {
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
     expect(axiosMock.history.post[0].params).toEqual({
-      localDateTime: "2022-02-02T00:00",
-      name: "Groundhog Day",
-      quarterYYYYQ: "20221",
+      requesterEmail: "user22@ucsb.edu",
+      professorEmail: "user23@ucsb.edu",
+      explanation: "this is another explanation",
+      dateRequested: "2021-02-02T00:00",
+      dateNeeded: "2021-02-03T00:00",
+      done: false,
     });
 
     expect(mockToast).toBeCalledWith(
-      "New ucsbDate Created - id: 17 name: Groundhog Day",
+      "New recommendationRequest Created - id: 1 requesterEmail: user10@ucsb.edu",
     );
     expect(mockNavigate).toBeCalledWith({ to: "/recommendationrequest" });
   });

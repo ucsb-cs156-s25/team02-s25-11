@@ -10,7 +10,7 @@ export default function RecommendationRequestCreatePage({ storybook = false }) {
     method: "POST",
     params: {
       requesterEmail: recommendationRequest.requesterEmail,
-      requesterEmail: recommendationRequest.requesterEmail,
+      professorEmail: recommendationRequest.professorEmail,
       explanation: recommendationRequest.explanation,
       dateRequested: recommendationRequest.dateRequested,
       dateNeeded: recommendationRequest.dateNeeded,
