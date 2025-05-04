@@ -33,7 +33,7 @@ function MenuItemReviewForm({
         <Form.Group className="mb-3">
           <Form.Label htmlFor="id">Id</Form.Label>
           <Form.Control
-            data-testid={testIdPrefix + "id"} 
+            data-testid={testIdPrefix + "id"}
             id="id"
             type="text"
             {...register("id")}
@@ -46,7 +46,7 @@ function MenuItemReviewForm({
         <Form.Group className="mb-3">
           <Form.Label htmlFor="itemid">Item ID</Form.Label>
           <Form.Control
-            data-testid={testIdPrefix + "itemId"} 
+            data-testid={testIdPrefix + "itemId"}
             id="itemid"
             type="text"
             {...register("itemid", {
@@ -63,7 +63,7 @@ function MenuItemReviewForm({
         <Form.Group className="mb-3">
           <Form.Label htmlFor="revieweremail">Reviewer Email</Form.Label>
           <Form.Control
-            data-testid={testIdPrefix + "reviewerEmail"} 
+            data-testid={testIdPrefix + "reviewerEmail"}
             id="revieweremail"
             type="text"
             isInvalid={Boolean(errors.revieweremail)}
@@ -81,7 +81,7 @@ function MenuItemReviewForm({
         <Form.Group className="mb-3">
           <Form.Label htmlFor="stars">Stars</Form.Label>
           <Form.Control
-            data-testid={testIdPrefix + "stars"} 
+            data-testid={testIdPrefix + "stars"}
             id="stars"
             type="text"
             isInvalid={Boolean(errors.stars)}
@@ -102,7 +102,7 @@ function MenuItemReviewForm({
         <Form.Group className="mb-3">
           <Form.Label htmlFor="datereviewed">Date Reviewed </Form.Label>
           <Form.Control
-            data-testid={testIdPrefix + "dateReviewed"} 
+            data-testid={testIdPrefix + "dateReviewed"}
             id="datereviewed"
             type="datetime-local"
             isInvalid={Boolean(errors.localDateTime)}
@@ -121,7 +121,7 @@ function MenuItemReviewForm({
         <Form.Group className="mb-3">
           <Form.Label htmlFor="comments">Comments</Form.Label>
           <Form.Control
-            data-testid={testIdPrefix + "comments"} 
+            data-testid={testIdPrefix + "comments"}
             id="comments"
             type="text"
             isInvalid={Boolean(errors.comments)}
