@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
-=======
-import { render, screen } from "@testing-library/react";
->>>>>>> 813f2c6 (added reqrequest page placeholders)
 import RecommendationRequestCreatePage from "main/pages/RecommendationRequest/RecommendationRequestCreatePage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
@@ -12,7 +8,6 @@ import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 
-<<<<<<< HEAD
 const mockToast = jest.fn();
 jest.mock("react-toastify", () => {
   const originalModule = jest.requireActual("react-toastify");
@@ -40,12 +35,6 @@ describe("RecommendationRequestCreatePage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
   beforeEach(() => {
-=======
-describe("RecommendationRequestCreatePage tests", () => {
-  const axiosMock = new AxiosMockAdapter(axios);
-
-  const setupUserOnly = () => {
->>>>>>> 813f2c6 (added reqrequest page placeholders)
     axiosMock.reset();
     axiosMock.resetHistory();
     axiosMock
@@ -54,22 +43,10 @@ describe("RecommendationRequestCreatePage tests", () => {
     axiosMock
       .onGet("/api/systemInfo")
       .reply(200, systemInfoFixtures.showingNeither);
-<<<<<<< HEAD
   });
 
   test("renders without crashing", async () => {
     const queryClient = new QueryClient();
-=======
-  };
-
-  const queryClient = new QueryClient();
-  test("Renders expected content", async () => {
-    // arrange
-
-    setupUserOnly();
-
-    // act
->>>>>>> 813f2c6 (added reqrequest page placeholders)
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
@@ -78,7 +55,6 @@ describe("RecommendationRequestCreatePage tests", () => {
       </QueryClientProvider>,
     );
 
-<<<<<<< HEAD
     await waitFor(() => {
       expect(
         screen.getByTestId("RecommendationRequestForm-requesterEmail"),
@@ -113,40 +89,6 @@ describe("RecommendationRequestCreatePage tests", () => {
     await waitFor(() => {
       expect(
         screen.getByTestId("RecommendationRequestForm-requesterEmail"),
-<<<<<<< HEAD
-=======
-      ).toBeInTheDocument();
-    });
-  });
-
-  test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
-    const queryClient = new QueryClient();
-    const recommendationRequest = {
-      id: 1,
-      requesterEmail: "user10@ucsb.edu",
-      professorEmail: "user11@ucsb.edu",
-      explanation: "this is an explanation",
-      dateRequested: "2022-02-02T00:00",
-      dateNeeded: "2023-02-02T00:00",
-      done: true,
-    };
-
-    axiosMock
-      .onPost("/api/recommendationrequest/post")
-      .reply(202, recommendationRequest);
-
-    render(
-      <QueryClientProvider client={queryClient}>
-        <MemoryRouter>
-          <RecommendationRequestCreatePage />
-        </MemoryRouter>
-      </QueryClientProvider>,
-    );
-
-    await waitFor(() => {
-      expect(
-        screen.getByTestId("RecommendationRequestForm-requesterEmail"),
->>>>>>> a93d2d8 (added page and page tests)
       ).toBeInTheDocument();
     });
 
@@ -206,10 +148,3 @@ describe("RecommendationRequestCreatePage tests", () => {
     expect(mockNavigate).toBeCalledWith({ to: "/recommendationrequest" });
   });
 });
-=======
-    // assert
-
-    await screen.findByText("Create page not yet implemented");
-  });
-});
->>>>>>> 813f2c6 (added reqrequest page placeholders)
