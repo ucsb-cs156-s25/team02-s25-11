@@ -17,7 +17,7 @@ describe("MenuItemReview tests", () => {
   const queryClient = new QueryClient();
 
   const expectedHeaders = [
-    "Item ID",
+    "Item id",
     "Reviewer Email",
     "Stars",
     "Date Reviewed",
@@ -62,6 +62,44 @@ describe("MenuItemReview tests", () => {
 
     expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
     expect(screen.getByText(`Id`)).toBeInTheDocument();
+
+    expect(await screen.findByTestId(`${testId}-itemId`)).toBeInTheDocument();
+    expect(screen.getByText(`Item id`)).toBeInTheDocument();
+
+    expect(
+      await screen.findByTestId(`${testId}-reviewerEmail`),
+    ).toBeInTheDocument();
+    expect(screen.getByText(`Reviewer Email`)).toBeInTheDocument();
+
+    expect(await screen.findByTestId(`${testId}-stars`)).toBeInTheDocument();
+    expect(screen.getByText(`Stars`)).toBeInTheDocument();
+
+    expect(
+      await screen.findByTestId(`${testId}-datereviewed`),
+    ).toBeInTheDocument();
+    expect(screen.getByText(`Date Reviewed`)).toBeInTheDocument();
+
+    expect(await screen.findByTestId(`${testId}-comments`)).toBeInTheDocument();
+    expect(screen.getByText(`Comments`)).toBeInTheDocument();
+
+    expect(screen.getByLabelText("Id")).toHaveValue(
+      String(menuItemReviewFixtures.oneMenuItemReview.id),
+    );
+    expect(screen.getByLabelText("Item id")).toHaveValue(
+      String(menuItemReviewFixtures.oneMenuItemReview.itemid),
+    );
+    expect(screen.getByLabelText("Reviewer Email")).toHaveValue(
+      String(menuItemReviewFixtures.oneMenuItemReview.revieweremail),
+    );
+    expect(screen.getByLabelText("Stars")).toHaveValue(
+      String(menuItemReviewFixtures.oneMenuItemReview.stars),
+    );
+    expect(screen.getByLabelText("Comments")).toHaveValue(
+      String(menuItemReviewFixtures.oneMenuItemReview.comments),
+    );
+    expect(screen.getByLabelText("Date Reviewed")).toHaveValue(
+      menuItemReviewFixtures.oneMenuItemReview.datereviewed,
+    );
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
@@ -99,12 +137,40 @@ describe("MenuItemReview tests", () => {
     expect(screen.getByText(/Date Reviewed is required/)).toBeInTheDocument();
     expect(screen.getByText(/Comments are required/)).toBeInTheDocument();
 
-    const nameInput = screen.getByTestId(`${testId}-itemId`);
-    fireEvent.change(nameInput, { target: { value: "a".repeat(31) } });
+    const itemIdInput = screen.getByTestId(`${testId}-itemId`);
+    fireEvent.change(itemIdInput, { target: { value: "a".repeat(31) } });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.getByText(/Max length 30 characters/)).toBeInTheDocument();
+      expect(screen.getByText(/Max length 30 characters./)).toBeInTheDocument();
+    });
+
+    const starInput = screen.getByTestId(`${testId}-stars`);
+    fireEvent.change(starInput, { target: { value: "7" } });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(/Stars must be within the range of 1-5./),
+      ).toBeInTheDocument();
+    });
+
+    const starInputEmpty = screen.getByTestId(`${testId}-stars`);
+    fireEvent.change(starInputEmpty, { target: { value: "" } });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(screen.getByText(/Stars are required/)).toBeInTheDocument();
+    });
+
+    const emailInput = screen.getByTestId(`${testId}-comments`);
+    fireEvent.change(emailInput, { target: { value: "a".repeat(256) } });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(/Max length 255 characters./),
+      ).toBeInTheDocument();
     });
   });
 });

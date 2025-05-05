@@ -20,11 +20,6 @@ function MenuItemReviewForm({
   // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
   // Note that even this complex regex may still need some tweaks
 
-  const isodate_regex =
-    /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-
-  const stars_regex = /^[1-5]$/;
-
   const testIdPrefix = "MenuItemReview-";
 
   return (
@@ -44,7 +39,7 @@ function MenuItemReviewForm({
       )}
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="itemid">Item ID</Form.Label>
+        <Form.Label htmlFor="itemid">Item id</Form.Label>
         <Form.Control
           data-testid={testIdPrefix + "itemId"}
           id="itemid"
@@ -54,7 +49,7 @@ function MenuItemReviewForm({
             required: "Item id is required.",
             maxLength: {
               value: 30,
-              message: "Max length 30 characters",
+              message: "Max length 30 characters.",
             },
           })}
         />
@@ -87,14 +82,15 @@ function MenuItemReviewForm({
           type="text"
           isInvalid={Boolean(errors.stars)}
           {...register("stars", {
-            required: true,
-            pattern: stars_regex,
+            required: "Stars are required.",
+            pattern: {
+              value: /[1-5]/,
+              message: "Stars must be within the range of 1-5.",
+            },
           })}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.stars && "Stars are required. "}
-          {errors.stars?.type === "pattern" &&
-            "Stars must be within the range of 1-5."}
+          {errors.stars?.message}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -107,7 +103,6 @@ function MenuItemReviewForm({
           isInvalid={Boolean(errors.datereviewed)}
           {...register("datereviewed", {
             required: true,
-            pattern: isodate_regex,
           })}
         />
         <Form.Control.Feedback type="invalid">
@@ -126,7 +121,7 @@ function MenuItemReviewForm({
             required: "Comments are required.",
             maxLength: {
               value: 255,
-              message: "Max length 255 characters",
+              message: "Max length 255 characters.",
             },
           })}
         />
@@ -135,9 +130,7 @@ function MenuItemReviewForm({
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Button type="submit" data-testid={testIdPrefix + "submit"}>
-        {buttonLabel}
-      </Button>
+      <Button type="submit">{buttonLabel}</Button>
       <Button
         variant="Secondary"
         onClick={() => navigate(-1)}

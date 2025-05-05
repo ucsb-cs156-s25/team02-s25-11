@@ -5,7 +5,7 @@ const menuItemReviewFixtures = {
     revieweremail: "7432@ucsb.edu",
     stars: 4,
     comments: "good",
-    datereviewed: "2025-01-01T00:00:00",
+    datereviewed: "2025-01-01T00:00:30.000",
   },
 
   threeMenuItemReview: [
