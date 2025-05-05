@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s25/team02-s25-11
 owner: ucsb-cs156-s25
 repo_name: team02-s25-11
-pull_requests: [{"author":{"id":"MDQ6VXNlcjUzMjM2OTYx","is_bot":false,"login":"Wendy192837","name":""},"headRefName":"ws-edit-page","number":113,"title":"ws - added edit page and tests for recommendation request","url":"https://github.com/ucsb-cs156-s25/team02-s25-11/pull/113"},{"author":{"id":"MDQ6VXNlcjUzMjM2OTYx","is_bot":false,"login":"Wendy192837","name":""},"headRefName":"ws-create-page","number":110,"title":"ws - create page + tests for recommendation request","url":"https://github.com/ucsb-cs156-s25/team02-s25-11/pull/110"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjUzMjM2OTYx","is_bot":false,"login":"Wendy192837","name":""},"headRefName":"ws-edit-page","number":113,"title":"ws - added edit page and tests for recommendation request","url":"https://github.com/ucsb-cs156-s25/team02-s25-11/pull/113"}]
