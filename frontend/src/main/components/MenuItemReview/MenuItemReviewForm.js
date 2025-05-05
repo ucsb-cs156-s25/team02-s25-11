@@ -1,4 +1,4 @@
-import { Button, Form} from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -52,6 +52,10 @@ function MenuItemReviewForm({
           isInvalid={Boolean(errors.itemid)}
           {...register("itemid", {
             required: "Item id is required.",
+            maxLength: {
+              value: 30,
+              message: "Max length 30 characters",
+            },
           })}
         />
         <Form.Control.Feedback type="invalid">
@@ -74,7 +78,6 @@ function MenuItemReviewForm({
           {errors.revieweremail?.message}
         </Form.Control.Feedback>
       </Form.Group>
-
 
       <Form.Group className="mb-3">
         <Form.Label htmlFor="stars">Stars</Form.Label>
@@ -121,6 +124,10 @@ function MenuItemReviewForm({
           isInvalid={Boolean(errors.comments)}
           {...register("comments", {
             required: "Comments are required.",
+            maxLength: {
+              value: 255,
+              message: "Max length 255 characters",
+            },
           })}
         />
         <Form.Control.Feedback type="invalid">
@@ -128,14 +135,13 @@ function MenuItemReviewForm({
         </Form.Control.Feedback>
       </Form.Group>
 
-
-      <Button type="submit" data-testid="submit">
+      <Button type="submit" data-testid={testIdPrefix + "submit"}>
         {buttonLabel}
       </Button>
       <Button
         variant="Secondary"
         onClick={() => navigate(-1)}
-        data-testid="cancel"
+        data-testid={testIdPrefix + "cancel"}
       >
         Cancel
       </Button>
