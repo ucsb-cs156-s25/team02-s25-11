@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for pages/HelpRequest/HelpRequestCreatePage.js</title>
+    <title>Code coverage report for pages/RecommendationRequest/RecommendationRequestCreatePage.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/HelpRequest</a> HelpRequestCreatePage.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/RecommendationRequest</a> RecommendationRequestCreatePage.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -170,28 +170,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import HelpRequestForm from "main/components/HelpRequest/HelpRequestForm";
+import RecommendationRequestForm from "main/components/RecommendationRequest/RecommendationRequestForm";
 import { Navigate } from "react-router-dom";
 import { useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 &nbsp;
-export default function HelpRequestCreatePage({ storybook = false }) {
-  const objectToAxiosParams = (helpRequest) =&gt; ({
-    url: "/api/helprequest/post",
+export default function RecommendationRequestCreatePage({ storybook = false }) {
+  const objectToAxiosParams = (recommendationRequest) =&gt; ({
+    url: "/api/recommendationrequest/post",
     method: "POST",
     params: {
-      requesterEmail: helpRequest.requesterEmail,
-      teamId: helpRequest.teamId,
-      tableOrBreakoutRoom: helpRequest.tableOrBreakoutRoom,
-      requestTime: helpRequest.requestTime,
-      explanation: helpRequest.explanation,
-      solved: helpRequest.solved,
+      requesterEmail: recommendationRequest.requesterEmail,
+      professorEmail: recommendationRequest.professorEmail,
+      explanation: recommendationRequest.explanation,
+      dateRequested: recommendationRequest.dateRequested,
+      dateNeeded: recommendationRequest.dateNeeded,
+      done: recommendationRequest.done,
     },
   });
 &nbsp;
-  const onSuccess = (helpRequest) =&gt; {
+  const onSuccess = (recommendationRequest) =&gt; {
     toast(
-      `New helpRequest Created - id: ${helpRequest.id} requesterEmail: ${helpRequest.requesterEmail}`,
+      `New recommendationRequest Created - id: ${recommendationRequest.id} requesterEmail: ${recommendationRequest.requesterEmail}`,
     );
   };
 &nbsp;
@@ -199,7 +199,7 @@ export default function HelpRequestCreatePage({ storybook = false }) {
     objectToAxiosParams,
     { onSuccess },
     // Stryker disable next-line all : hard to set up test for caching
-    ["/api/helprequest/all"],
+    ["/api/recommendationrequest/all"],
   );
 &nbsp;
   const { isSuccess } = mutation;
@@ -209,15 +209,15 @@ export default function HelpRequestCreatePage({ storybook = false }) {
   };
 &nbsp;
   if (isSuccess &amp;&amp; !storybook) {
-    return &lt;Navigate to="/helprequest" /&gt;;
+    return &lt;Navigate to="/recommendationrequest" /&gt;;
   }
 &nbsp;
   return (
     &lt;BasicLayout&gt;
       &lt;div className="pt-2"&gt;
-        &lt;h1&gt;Create New HelpRequest&lt;/h1&gt;
+        &lt;h1&gt;Create New RecommendationRequest&lt;/h1&gt;
 &nbsp;
-        &lt;HelpRequestForm submitAction={onSubmit} /&gt;
+        &lt;RecommendationRequestForm submitAction={onSubmit} /&gt;
       &lt;/div&gt;
     &lt;/BasicLayout&gt;
   );
