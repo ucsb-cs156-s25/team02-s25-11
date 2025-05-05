@@ -82,7 +82,7 @@ export default function AppNavbar({
                     UCSB Dining Commons Menu Items
                   </Nav.Link>
                   <Nav.Link as={Link} to="/helprequest">
-                    HelpRequest
+                    Help Requests
                   </Nav.Link>
                 </>
               ) : (
