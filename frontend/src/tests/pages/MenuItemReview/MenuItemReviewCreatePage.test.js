@@ -15,7 +15,7 @@ describe("MenuItemReviewCreatePage tests", () => {
     axiosMock.reset();
     axiosMock.resetHistory();
     axiosMock
-      .onGet("/api/currentUser") 
+      .onGet("/api/currentUser")
       .reply(200, apiCurrentUserFixtures.userOnly);
     axiosMock
       .onGet("/api/systemInfo")
