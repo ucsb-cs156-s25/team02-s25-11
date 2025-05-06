@@ -37,7 +37,7 @@ export default function MenuItemReviewCreatePage({ storybook = false }) {
   };
 
   if (isSuccess && !storybook) {
-    return <Navigate to="/menuitemreviews" />;
+    return <Navigate to="/menuitemreview" />;
   }
 
   return (

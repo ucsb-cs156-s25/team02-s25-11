@@ -129,6 +129,6 @@ describe("MenuItemReviewCreatePage tests", () => {
     expect(mockToast).toBeCalledWith(
       "New Menu Item Review Created - id: 1 item id: 1 comments: good reviewer email: 7432@ucsb.edu stars: 4 date reviewed: 2025-01-01T00:00",
     );
-    expect(mockNavigate).toBeCalledWith({ to: "/menuitemreviews" });
+    expect(mockNavigate).toBeCalledWith({ to: "/menuitemreview" });
   });
 });
