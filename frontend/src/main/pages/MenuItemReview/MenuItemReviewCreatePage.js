@@ -10,16 +10,16 @@ export default function MenuItemReviewCreatePage({ storybook = false }) {
     method: "POST",
     params: {
       itemId: menuItemReview.itemid,
-      comments: menuItemReview.comments, 
-      reviewerEmail: menuItemReview.revieweremail, 
-      stars: menuItemReview.stars, 
-      dateReviewed: menuItemReview.datereviewed
+      comments: menuItemReview.comments,
+      reviewerEmail: menuItemReview.revieweremail,
+      stars: menuItemReview.stars,
+      dateReviewed: menuItemReview.datereviewed,
     },
   });
 
   const onSuccess = (menuItemReview) => {
     toast(
-      `New Menu Item Review Created - id: ${menuItemReview.id} itemid: ${menuItemReview.itemid}`,
+      `New Menu Item Review Created - id: ${menuItemReview.id} item id: ${menuItemReview.itemid} comments: ${menuItemReview.comments} reviewer email: ${menuItemReview.revieweremail} stars: ${menuItemReview.stars} date reviewed: ${menuItemReview.datereviewed}`,
     );
   };
 
@@ -37,7 +37,7 @@ export default function MenuItemReviewCreatePage({ storybook = false }) {
   };
 
   if (isSuccess && !storybook) {
-    return <Navigate to="/menuItemReview" />;
+    return <Navigate to="/menuitemreviews" />;
   }
 
   return (
