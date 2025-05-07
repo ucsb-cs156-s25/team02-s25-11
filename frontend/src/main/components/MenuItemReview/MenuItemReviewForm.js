@@ -102,11 +102,11 @@ function MenuItemReviewForm({
           type="datetime-local"
           isInvalid={Boolean(errors.datereviewed)}
           {...register("datereviewed", {
-            required: true,
+            required: "Date Reviewed is required",
           })}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.datereviewed && "Date Reviewed is required. "}
+          {errors.datereviewed?.message}
         </Form.Control.Feedback>
       </Form.Group>
 

@@ -17,7 +17,7 @@ export default function MenuItemReviewTable({
   const navigate = useNavigate();
 
   const editCallback = (cell) => {
-    navigate(`/menuItemReview/edit/${cell.row.values.id}`);
+    navigate(`/menuitemreview/edit/${cell.row.values.id}`);
   };
 
   // Stryker disable all : hard to test for query caching
@@ -25,7 +25,7 @@ export default function MenuItemReviewTable({
   const deleteMutation = useBackendMutation(
     cellToAxiosParamsDelete,
     { onSuccess: onDeleteSuccess },
-    ["/api/menuItemReview/all"],
+    ["/api/menuitemreviews/all"],
   );
   // Stryker restore all
 
