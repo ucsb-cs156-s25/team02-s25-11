@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for pages/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemEditPage.js</title>
+    <title>Code coverage report for pages/MenuItemReview/MenuItemReviewEditPage.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/UCSBDiningCommonsMenuItems</a> UCSBDiningCommonsMenuItemEditPage.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/MenuItemReview</a> MenuItemReviewEditPage.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -151,8 +151,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -173,6 +171,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -225,49 +225,49 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useParams } from "react-router-dom";
-import UCSBDiningCommonsMenuItemForm from "main/components/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemForm";
+import MenuItemReviewForm from "main/components/MenuItemReview/MenuItemReviewForm";
 import { Navigate } from "react-router-dom";
 import { useBackend, useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 &nbsp;
-export default function UCSBDiningCommonsMenuItemEditPage({
-  storybook = false,
-}) {
+export default function MenuItemReviewEditPage({ storybook = false }) {
   let { id } = useParams();
 &nbsp;
   const {
-    data: ucsbDiningCommonsMenuItem,
+    data: menuItemReview,
     _error,
     _status,
   } = useBackend(
     // Stryker disable next-line all : don't test internal caching of React Query
-    [`/api/ucsbdiningcommonsmenuitems?id=${id}`],
+    [`/api/menuitemreviews?id=${id}`],
     {
       // Stryker disable next-line all : GET is the default, so mutating this to "" doesn't introduce a bug
       method: "GET",
-      url: `/api/ucsbdiningcommonsmenuitems`,
+      url: `/api/menuitemreviews`,
       params: {
         id,
       },
     },
   );
 &nbsp;
-  const objectToAxiosPutParams = (ucsbDiningCommonsMenuItem) =&gt; ({
-    url: "/api/ucsbdiningcommonsmenuitems",
+  const objectToAxiosPutParams = (menuItemReview) =&gt; ({
+    url: "/api/menuitemreviews",
     method: "PUT",
     params: {
-      id: ucsbDiningCommonsMenuItem.id,
+      id: menuItemReview.id,
     },
     data: {
-      diningCommonsCode: ucsbDiningCommonsMenuItem.diningCommonsCode,
-      name: ucsbDiningCommonsMenuItem.name,
-      station: ucsbDiningCommonsMenuItem.station,
+      itemid: menuItemReview.itemid,
+      comments: menuItemReview.comments,
+      revieweremail: menuItemReview.revieweremail,
+      stars: menuItemReview.stars,
+      datereviewed: menuItemReview.datereviewed,
     },
   });
 &nbsp;
-  const onSuccess = (ucsbDiningCommonsMenuItem) =&gt; {
+  const onSuccess = (menuItemReview) =&gt; {
     toast(
-      `ucsbDiningCommonsMenuItem Updated - id: ${ucsbDiningCommonsMenuItem.id} name: ${ucsbDiningCommonsMenuItem.name}`,
+      `Menu Item Review Updated - id: ${menuItemReview.id} item id: ${menuItemReview.itemid} comments: ${menuItemReview.comments} reviewer email: ${menuItemReview.revieweremail} stars: ${menuItemReview.stars} date reviewed: ${menuItemReview.datereviewed}`,
     );
   };
 &nbsp;
@@ -275,7 +275,7 @@ export default function UCSBDiningCommonsMenuItemEditPage({
     objectToAxiosPutParams,
     { onSuccess },
     // Stryker disable next-line all : hard to set up test for caching
-    [`/api/ucsbdiningcommonsmenuitems?id=${id}`],
+    [`/api/menuitemreviews?id=${id}`],
   );
 &nbsp;
   const { isSuccess } = mutation;
@@ -285,18 +285,18 @@ export default function UCSBDiningCommonsMenuItemEditPage({
   };
 &nbsp;
   if (isSuccess &amp;&amp; !storybook) {
-    return &lt;Navigate to="/ucsbdiningcommonsmenuitems" /&gt;;
+    return &lt;Navigate to="/menuitemreview" /&gt;;
   }
 &nbsp;
   return (
     &lt;BasicLayout&gt;
       &lt;div className="pt-2"&gt;
-        &lt;h1&gt;Edit UCSBDiningCommonsMenuItem&lt;/h1&gt;
-        {ucsbDiningCommonsMenuItem &amp;&amp; (
-          &lt;UCSBDiningCommonsMenuItemForm
+        &lt;h1&gt;Edit Menu Item Review&lt;/h1&gt;
+        {menuItemReview &amp;&amp; (
+          &lt;MenuItemReviewForm
             submitAction={onSubmit}
             buttonLabel={"Update"}
-            initialContents={ucsbDiningCommonsMenuItem}
+            initialContents={menuItemReview}
           /&gt;
         )}
       &lt;/div&gt;
