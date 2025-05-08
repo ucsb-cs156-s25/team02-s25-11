@@ -19,6 +19,7 @@ function MenuItemReviewForm({
 
   // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
   // Note that even this complex regex may still need some tweaks
+  // dummy comment
 
   const testIdPrefix = "MenuItemReview-";
 
