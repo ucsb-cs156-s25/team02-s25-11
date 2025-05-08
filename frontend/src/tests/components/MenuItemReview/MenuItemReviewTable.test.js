@@ -321,7 +321,7 @@ describe("MenuItemReviewTable tests", () => {
 
     // assert - check that the navigate function was called with the expected path
     await waitFor(() =>
-      expect(mockedNavigate).toHaveBeenCalledWith("/menuItemReview/edit/2"),
+      expect(mockedNavigate).toHaveBeenCalledWith("/menuitemreview/edit/2"),
     );
   });
 
@@ -331,7 +331,7 @@ describe("MenuItemReviewTable tests", () => {
 
     const axiosMock = new AxiosMockAdapter(axios);
     axiosMock
-      .onDelete("/api/menuItemReview")
+      .onDelete("/api/menuitemreview")
       .reply(200, { message: "Menu item review deleted" });
 
     // act - render the component

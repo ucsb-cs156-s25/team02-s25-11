@@ -19,6 +19,7 @@ function MenuItemReviewForm({
 
   // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
   // Note that even this complex regex may still need some tweaks
+  // dummy comment
 
   const testIdPrefix = "MenuItemReview-";
 
@@ -102,11 +103,11 @@ function MenuItemReviewForm({
           type="datetime-local"
           isInvalid={Boolean(errors.datereviewed)}
           {...register("datereviewed", {
-            required: true,
+            required: "Date Reviewed is required",
           })}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.datereviewed && "Date Reviewed is required. "}
+          {errors.datereviewed?.message}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -130,7 +131,10 @@ function MenuItemReviewForm({
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Button type="submit">{buttonLabel}</Button>
+      <Button type="submit" data-testid={testIdPrefix + "submit"}>
+        {buttonLabel}
+      </Button>
+
       <Button
         variant="Secondary"
         onClick={() => navigate(-1)}
